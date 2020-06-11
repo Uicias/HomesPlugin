@@ -1,0 +1,13 @@
+name: HomesPlugin
+main: com.uicias.homeplugin.HomePlugin
+version: 0.0.1
+author: Uicias
+api-version: 1.15
+description: Plugin to manage the homes
+commands:
+  sethome:
+    description: set a home for the user
+  home:
+    description: teleport a player to a home
+  delhome:
+    description: allow a player to delete a home
