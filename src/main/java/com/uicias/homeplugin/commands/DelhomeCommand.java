@@ -2,12 +2,15 @@ package com.uicias.homeplugin.commands;
 
 import com.uicias.homeplugin.HomePlugin;
 import com.uicias.homeplugin.manager.HomePlayer;
+import com.uicias.homeplugin.utils.DbUtil;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,16 @@ public class DelhomeCommand implements CommandExecutor, TabCompleter {
         pl.getHomes().remove(strings[0]);
         player.sendMessage("§7Home §3"+ strings[0] + "§7 supprimé !");
 
+        try{
+            PreparedStatement ps = DbUtil.getInstance().preparedStatement("DELETE FROM `Homes` WHERE name = ? AND uuid = ?");
+            ps.setString(1, strings[0]);
+            ps.setString(2, player.getUniqueId().toString());
+            ps.executeUpdate();
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
         return true;
     }
 
@@ -51,7 +64,6 @@ public class DelhomeCommand implements CommandExecutor, TabCompleter {
         HomePlayer pl = HomePlugin.homePlugin.getHomePlayer(player);
 
         ArrayList<String> ret = new ArrayList<>(pl.getHomes().keySet());
-
         return ret;
     }
 
