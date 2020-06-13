@@ -50,7 +50,7 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e){
-        e.getEntity().sendMessage("§7Lieu de la mort : §8X:" + e.getEntity().getLocation().getX() + " Y: " + e.getEntity().getLocation().getY() + " Z: " + e.getEntity().getLocation().getZ());
+        e.getEntity().sendMessage("§7Lieu de la mort : §8X:" +(int) e.getEntity().getLocation().getX() + " Y: " + (int)e.getEntity().getLocation().getY() + " Z: " + (int)e.getEntity().getLocation().getZ());
     }
 
 }

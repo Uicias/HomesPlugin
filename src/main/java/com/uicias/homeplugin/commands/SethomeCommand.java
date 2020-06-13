@@ -33,11 +33,6 @@ public class SethomeCommand implements CommandExecutor {
 
         int nbHomes = pl.getHomes().size();
 
-        if(nbHomes + 1 > MAX_HOMES){
-            player.sendMessage("§cTu peux pas creer ce home car tu dépasses déjà la limite...");
-            return false;
-        }
-
         if(strings.length == 0){
             player.sendMessage("§cEuhhhhh tu seras gentil de me mettre un nom ton home =)");
             return false;
@@ -45,6 +40,12 @@ public class SethomeCommand implements CommandExecutor {
 
         if(!pl.getHomes().containsKey(strings[0])){
             try{
+                
+                if(nbHomes + 1 > MAX_HOMES){
+                    player.sendMessage("§cTu peux pas creer ce home car tu dépasses déjà la limite...");
+                    return false;
+                }
+
                 PreparedStatement ps = DbUtil.getInstance().preparedStatement("INSERT INTO Homes( `name`, `loc`, `uuid`) VALUES(?, ?, ?)");
                 ps.setString(1, strings[0]);
                 ps.setString(2, player.getLocation().getWorld().getName() + ";" + player.getLocation().getX() + ";" + player.getLocation().getY() + ";" + player.getLocation().getZ() + ";" + player.getLocation().getYaw() + ";" + player.getLocation().getPitch());
