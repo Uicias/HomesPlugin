@@ -5,10 +5,7 @@ import org.bukkit.Bukkit;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 /*
 This file DbUtil is part of a project HomesPlugin.
@@ -51,6 +48,15 @@ public class DbUtil {
         try{
             connection = DriverManager.getConnection("jdbc:sqlite:" + db.getPath());
             instance = this;
+
+            DatabaseMetaData dbm = connection.getMetaData();
+            ResultSet tableWarp = dbm.getTables(null, null, "Warps", null);
+            if(!tableWarp.next()){ //la table "Warps" n'existe pas
+                connection.prepareStatement("CREATE TABLE IF NOT EXISTS Warps (" +
+                        "name TEXT NOT NULL," +
+                        "loc TEXT NOT NULL);").executeUpdate();
+            }
+
         }
         catch(SQLException e){
             e.printStackTrace();
@@ -71,6 +77,9 @@ public class DbUtil {
                     "uuid TEXT NOT NULL," +
                     "name TEXT NOT NULL," +
                     "loc TEXT NOT NULL);").executeUpdate();
+            connection.prepareStatement("CREATE TABLE IF NOT EXISTS Warps (" +
+                    "name TEXT NOT NULL," +
+                    "loc TEXT NOT NULL);").executeUpdate();
 
 
         } catch (SQLException | ClassNotFoundException | IOException e) {
@@ -82,6 +91,11 @@ public class DbUtil {
 
     public PreparedStatement preparedStatement(String sql) throws SQLException {
         return connection.prepareStatement(sql);
+    }
+
+    public void close() throws SQLException {
+        if(!connection.isClosed())
+            connection.close();
     }
 
 }

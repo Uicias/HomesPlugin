@@ -11,3 +11,9 @@ commands:
     description: teleport a player to a home
   delhome:
     description: allow a player to delete a home
+  warp:
+    description: allow a player to teleport himself to a warp
+  setwarp:
+    description: allow an operator to create a warp
+  delwarp:
+    description: allow an operator to delete a warp

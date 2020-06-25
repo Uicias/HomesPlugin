@@ -2,6 +2,7 @@ package com.uicias.homeplugin.listeners;
 
 import com.uicias.homeplugin.HomePlugin;
 import com.uicias.homeplugin.manager.HomePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
@@ -10,7 +11,9 @@ import org.bukkit.event.entity.EntityBreakDoorEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 /*
 This file listeners is part of a project HomesPlugin.
@@ -50,7 +53,17 @@ public class Listeners implements Listener {
 
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent e){
-        e.getEntity().sendMessage("§7Lieu de la mort : §8X:" +(int) e.getEntity().getLocation().getX() + " Y: " + (int)e.getEntity().getLocation().getY() + " Z: " + (int)e.getEntity().getLocation().getZ());
+        e.getEntity().sendMessage("§7Lieu de la mort : §8Monde:" + e.getEntity().getLocation().getWorld().getName() +  " §8X:" +(int) e.getEntity().getLocation().getX() + " Y: " + (int)e.getEntity().getLocation().getY() + " Z: " + (int)e.getEntity().getLocation().getZ());
+    }
+
+    @EventHandler
+    public void onPlayerPortal(PlayerPortalEvent e){
+        if(e.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL && e.getFrom().getWorld().getEnvironment() == World.Environment.NORMAL && e.getTo().getWorld().getEnvironment() == World.Environment.THE_END){
+            e.setCancelled(true);
+            e.setCanCreatePortal(false);
+            e.getPlayer().teleport(e.getTo().getWorld().getSpawnLocation());
+            e.getPlayer().sendMessage("§7Téléportation dans l'end !");
+        }
     }
 
 }
