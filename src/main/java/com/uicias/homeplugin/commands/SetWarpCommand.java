@@ -50,6 +50,8 @@ public class SetWarpCommand implements CommandExecutor {
                 ps.setString(2, player.getLocation().getWorld().getName() + ";" + player.getLocation().getX() + ";" + player.getLocation().getY() + ";" + player.getLocation().getZ() + ";" + player.getLocation().getYaw() + ";" + player.getLocation().getPitch());
                 ps.executeUpdate();
 
+                ps.close();
+
                 HomePlugin.homePlugin.getWarps().put(strings[0], player.getLocation());
                 player.sendMessage("§7Warp ajouté : §8" + strings[0]);
 

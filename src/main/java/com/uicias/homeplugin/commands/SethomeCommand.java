@@ -52,6 +52,8 @@ public class SethomeCommand implements CommandExecutor {
                 ps.setString(3, player.getUniqueId().toString());
                 ps.executeUpdate();
 
+                ps.close();
+
                 pl.getHomes().put(strings[0], player.getLocation());
                 player.sendMessage("§7Home ajouté : §8" + strings[0]);
 

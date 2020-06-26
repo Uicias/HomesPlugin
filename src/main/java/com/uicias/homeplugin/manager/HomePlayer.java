@@ -37,6 +37,12 @@ public class HomePlayer {
                 String[] location = rs.getString("loc").split(";");
                 this.homes.put(rs.getString("name"), new Location(HomePlugin.homePlugin.getServer().getWorld(location[0]), Double.parseDouble(location[1]), Double.parseDouble(location[2]), Double.parseDouble(location[3]), Float.parseFloat(location[4]), Float.parseFloat(location[5])));
             }
+
+            if(!rs.isClosed())
+                rs.close();
+            if(!ps.isClosed())
+                ps.close();
+
         }
         catch(SQLException e){
             e.printStackTrace();
