@@ -42,6 +42,7 @@ public class HomePlugin extends JavaPlugin {
         Objects.requireNonNull(getServer().getPluginCommand("warp")).setExecutor(new WarpCommand());
         Objects.requireNonNull(getServer().getPluginCommand("setwarp")).setExecutor(new SetWarpCommand());
         Objects.requireNonNull(getServer().getPluginCommand("delwarp")).setExecutor(new DelWarpCommand());
+        Objects.requireNonNull(getServer().getPluginCommand("hat")).setExecutor(new HatCommand());
         getServer().getLogger().info("Ajout des commandes DONE");
         getServer().getLogger().info("Ajout des listeners");
         getServer().getPluginManager().registerEvents(new Listeners(), this);

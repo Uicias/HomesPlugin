@@ -17,3 +17,5 @@ commands:
     description: allow an operator to create a warp
   delwarp:
     description: allow an operator to delete a warp
+  hat:
+    description: allow a player to place an item on his head
