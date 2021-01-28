@@ -26,7 +26,7 @@ public class CacaCommand implements CommandExecutor {
         ItemStack caca = new ItemStack(Material.PODZOL, 1);
         p.getWorld().dropItemNaturally(p.getLocation(), caca).setVelocity(new Vector(0,0,0));
         for(Player player : Bukkit.getOnlinePlayers())
-            player.sendMessage("§7[§3ZenPlugin§7] §e" + p.getName() + "§6 vient de faire sa crotte!");
+            player.sendMessage("§7[§3ZenPlugin§7] §c" + p.getName() + "§6 vient de faire sa crotte!");
         return true;
     }
 }
