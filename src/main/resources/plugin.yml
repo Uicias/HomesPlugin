@@ -1,21 +1,11 @@
-name: HomesPlugin
-main: com.uicias.homeplugin.HomePlugin
-version: 0.0.1
+name: ZenPlugin
+main: bzh.strawberry.zenplugin.ZenPlugin
+version: 0.1.0
 author: Uicias
-api-version: 1.16.3
-description: Plugin to manage the homes
+api-version: 1.16
+description: Plugin for Zennit_
 commands:
-  sethome:
-    description: set a home for the user
-  home:
-    description: teleport a player to a home
-  delhome:
-    description: allow a player to delete a home
-  warp:
-    description: allow a player to teleport himself to a warp
-  setwarp:
-    description: allow an operator to create a warp
-  delwarp:
-    description: allow an operator to delete a warp
   hat:
     description: allow a player to place an item on his head
+  caca:
+    description: Une demande spéciale d'Eclixal

@@ -1,4 +1,4 @@
-package com.uicias.homeplugin.commands;
+package bzh.strawberry.zenplugin.commands;
 
 import org.bukkit.Material;
 import org.bukkit.command.Command;
