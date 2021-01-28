@@ -11,7 +11,7 @@ import java.util.*;
 
 
 /*
-This file HomePlugin is part of a project HomesPlugin.
+This file HomePlugin is part of a project ZenPlugin.
 It was created on 05/06/2020 at 19:44 by Uicias.
 This file as the whole project shouldn't be modify by others without the express permission from HomesPlugin author(s).
 Also this comment shouldn't get remove from the file. (see Licence.md)
